@@ -43,5 +43,7 @@ void encrypter(){
 }
 
 int main(){
-    encrypter();
+    while(1){
+        encrypter();
+    }
 }

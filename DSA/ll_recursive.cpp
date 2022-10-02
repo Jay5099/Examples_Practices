@@ -31,11 +31,20 @@ void display(struct node *p){
         p=p->next;
     }
 }
+
+void Rdisplay(struct node *p){
+    if(p!=NULL){
+        Rdisplay(p->next);
+        cout<<p->data<<" ";
+
+    }
+}
+
 int main(){
     struct node *temp;
     int A[]={0,1,6,9,3,6,4};
     create(A,7);
 
-    display(first);
+    Rdisplay(first);
     return 0;
 }
