@@ -1,3 +1,6 @@
+// Reverese with pointing function
+//And using recursion
+
 #include<iostream>
 
 using namespace std;
@@ -32,24 +35,35 @@ void printlist(struct node *p){
             cout<<p->data<<" ";
             p=p->next;
         }
+      cout<<"\n";;
 }
 
-void insert(node**head,int k,int pos){
-    node*t=new node();
+node*reversell(node**head){
     node*p=(*head);
-    t->data=k;
+    node*q=NULL;
+    node*r=NULL;
 
-    for(int i=0;i<pos-1;i++){
+    while (p!=NULL){
+        r=q;
+        q=p;
         p=p->next;
+        q->next=r;
     }
-    t->next=p->next;
-    p->next=t;
-    // (*head)=p;
+    (*head)=q;
+    return (*head);
 }
 
-int main(){ 
+void R_reverse(node*q,node*p,node**head){
+    if(p!=NULL){
+        R_reverse(p,p->next,head);
+        p->next=q;
+    }
+    else  (*head)=q;
+}
 
-    int n,k,pos;  
+int main(){
+
+    int n;  
     cout<<"Enter the size of linklist:";
     cin>>n;                       
     int A[n]{};
@@ -58,18 +72,16 @@ int main(){
        cin>>A[i];
     }
 
-     node* head=NULL;
-     node* search=NULL;
-     head=new node();
-     head=create(head,A,n);
-     
+
+    node* head=NULL;
+    node* search=NULL;
+    head=new node();
+    head=create(head,A,n);
+
     printlist(head);
 
-    while(1){
-    cout<<"Enter position and element to enter:";
-    cin>>pos>>k;
-    insert(&head,k,pos);
+    head=reversell(&head);
     printlist(head);
-    }
-    return 0;
+    R_reverse(NULL,head,&head);
+    printlist(head);
 }

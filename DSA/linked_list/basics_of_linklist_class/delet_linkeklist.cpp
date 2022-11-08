@@ -1,3 +1,5 @@
+//delte linklist
+
 #include<iostream>
 
 using namespace std;
@@ -32,24 +34,31 @@ void printlist(struct node *p){
             cout<<p->data<<" ";
             p=p->next;
         }
-}
+        cout<<"\n";
+    }
 
-void insert(node**head,int k,int pos){
-    node*t=new node();
+int delete_node(node**head,int pos){
+
+    int x{-1};
+
     node*p=(*head);
-    t->data=k;
+    node*q=NULL;
 
-    for(int i=0;i<pos-1;i++){
+    for(int i=0;i<pos-1 && p!=NULL;i++){
+        q=p;
         p=p->next;
     }
-    t->next=p->next;
-    p->next=t;
-    // (*head)=p;
+    q->next=p->next;
+    p->next=NULL;
+    x=p->data;
+    delete p;
+
+    return x;
 }
 
-int main(){ 
+int main(){
 
-    int n,k,pos;  
+    int n;  
     cout<<"Enter the size of linklist:";
     cin>>n;                       
     int A[n]{};
@@ -58,18 +67,20 @@ int main(){
        cin>>A[i];
     }
 
-     node* head=NULL;
-     node* search=NULL;
-     head=new node();
-     head=create(head,A,n);
-     
+
+    node* head=NULL;
+    node* search=NULL;
+    head=new node();
+    head=create(head,A,n);
+
     printlist(head);
 
     while(1){
-    cout<<"Enter position and element to enter:";
-    cin>>pos>>k;
-    insert(&head,k,pos);
-    printlist(head);
+        int k;
+        cout<<"Enter position to delete:";
+        cin>>k;
+        k=delete_node(&head,k);
+        printlist(head);
+        cout<<" deleted node:"<<k<<"\n";
     }
-    return 0;
 }

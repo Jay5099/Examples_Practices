@@ -1,3 +1,5 @@
+//remove duplicate
+
 #include<iostream>
 
 using namespace std;
@@ -32,24 +34,28 @@ void printlist(struct node *p){
             cout<<p->data<<" ";
             p=p->next;
         }
+      cout<<"\n";;
 }
 
-void insert(node**head,int k,int pos){
-    node*t=new node();
+void remove_duplicate(node**head){
     node*p=(*head);
-    t->data=k;
-
-    for(int i=0;i<pos-1;i++){
-        p=p->next;
+    node*q=p->next;
+    while(q!=NULL){
+        if(p->data!=q->data){
+            p=q;
+            q=q->next;
+        }
+        else{
+            p->next=q->next;
+            delete q;
+            q=p->next;
+        }
     }
-    t->next=p->next;
-    p->next=t;
-    // (*head)=p;
 }
 
-int main(){ 
+int main(){
 
-    int n,k,pos;  
+    int n;  
     cout<<"Enter the size of linklist:";
     cin>>n;                       
     int A[n]{};
@@ -58,18 +64,14 @@ int main(){
        cin>>A[i];
     }
 
-     node* head=NULL;
-     node* search=NULL;
-     head=new node();
-     head=create(head,A,n);
-     
-    printlist(head);
 
-    while(1){
-    cout<<"Enter position and element to enter:";
-    cin>>pos>>k;
-    insert(&head,k,pos);
+    node* head=NULL;
+    node* search=NULL;
+    head=new node();
+    head=create(head,A,n);
+
     printlist(head);
-    }
-    return 0;
+    
+    remove_duplicate(&head);
+    printlist(head);
 }
