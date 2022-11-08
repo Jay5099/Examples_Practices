@@ -1,5 +1,4 @@
-// Reverese with pointing function
-//And using recursion
+//check loop via rabit vs turtoise
 
 #include<iostream>
 
@@ -38,27 +37,21 @@ void printlist(struct node *p){
       cout<<"\n";;
 }
 
-node*reversell(node**head){
-    node*p=(*head);
-    node*q=NULL;
-    node*r=NULL;
+int isLoop(node*f)
+{
+  node *p=NULL;
+  node *q=NULL;
+ p=q=f;
+ do{
+ p=p->next;
+ q=q->next;
+ q=q?q->next:q;
+ }while(p && q && p!=q);
 
-    while (p!=NULL){
-        r=q;
-        q=p;
-        p=p->next;
-        q->next=r;
-    }
-    (*head)=q;
-    return (*head);
-}
-
-void R_reverse(node*q,node*p,node**head){
-    if(p!=NULL){
-        R_reverse(p,p->next,head);
-        p->next=q;
-    }
-    else  (*head)=q;
+ if(p==q)
+ return 1;
+ else
+ return 0;
 }
 
 int main(){
@@ -77,10 +70,5 @@ int main(){
     head=new node();
     head=create(head,A,n);
 
-    printlist(head);
-
-    head=reversell(&head);
-    printlist(head);
-    R_reverse(NULL,head,&head);
     printlist(head);
 }
