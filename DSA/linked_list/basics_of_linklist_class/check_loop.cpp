@@ -56,19 +56,24 @@ int isLoop(node*f)
 
 int main(){
 
-    int n;  
-    cout<<"Enter the size of linklist:";
-    cin>>n;                       
-    int A[n]{};
+    int n{5};  
+    // cout<<"Enter the size of linklist:";
+    // cin>>n;                       
+    int A[5]{};
     cout<<"Enter elements of linklist:";
-    for(int i=0;i<n;i++){
+    for(int i=0;i<5;i++){
        cin>>A[i];
     }
 
 
     node* head=NULL;
+    node* head1=NULL;
+    node* head2=NULL;
     head=new node();
     head=create(head,A,n);
 
-    printlist(head);
+    head1=head->next->next;
+    head2=head->next->next->next->next;
+    head2->next=head1;
+    cout<<isLoop(head);
 }
