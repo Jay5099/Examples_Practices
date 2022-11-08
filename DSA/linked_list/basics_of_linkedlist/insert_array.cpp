@@ -5,41 +5,7 @@ int insert(int *a,int &n);
 
 using namespace std;
 
-int main(){
-    int n;
-    cout<<"Enter the size of array: ";
-    cin>>n;
 
-    int a[100]{0};
-    int *new_a{nullptr};
-
-    for (size_t i = 0; i < n; i++){
-        cout<<"Enter "<<i+1<<"th: ";
-        cin>>a[i];
-    }
-    char c{0};
-    do{
-        cout<<"-----------------"<<endl;
-        cout<<"type 1 to insert:"<<endl;
-        cout<<"type 2 to delete:"<<endl;
-        cout<<"-------***-------"<<endl;
-        cin>>c;
-
-
-        if (c=='1'){
-            *new_a=insert(a,n);
-            cout<<"you out!!";
-        }
-        else if(c=='2'){
-
-        }
-
-    print(new_a,n);
-    
-    }
-    while (c!='0');
-    return 0;
-}
 
 int insert(int *a,int &n){
     int pos,i{0},num{};
@@ -70,7 +36,7 @@ int insert(int *a,int &n){
     }
     return *a;
 }
-print(int *a,int &n){
+void print(int *a,int &n){
     
     for (int i = 0; i < n; i++)
     {
@@ -79,4 +45,41 @@ print(int *a,int &n){
         cout<<"]";
     }
     
+}
+
+int main(){
+    int n;
+    cout<<"Enter the size of array: ";
+    cin>>n;
+
+    int a[100]{0};
+    int *new_a{nullptr};
+
+    for (size_t i = 0; i < n; i++){
+        cout<<"Enter "<<i+1<<"th: ";
+        cin>>a[i];
+    }
+    char c{0};
+    do{
+        cout<<"-----------------"<<endl;
+        cout<<"type 0 to exit:"<<endl;
+        cout<<"type 1 to insert:"<<endl;
+        cout<<"type 2 to delete:"<<endl;
+        cout<<"-------***-------"<<endl;
+        cin>>c;
+
+
+        if (c=='1'){
+            *new_a=insert(a,n);
+            cout<<"you out!!";
+        }
+        else if(c=='2'){
+
+        }
+
+    print(new_a,n);
+    
+    }
+    while (c!='0');
+    return 0;
 }
