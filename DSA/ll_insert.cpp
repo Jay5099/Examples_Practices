@@ -67,24 +67,23 @@ void insert(struct node *p,int index,int x){
 int main(){
 
     int A[]{23,45,47,12,98,71,123};
+    int index,number;
     create(A,7);
     insert(first,3,172);
-    // insert(first,3,78);
-    // insert(first,3,56);
-    // insert(first,3,32);
-    // insert(first,3,172);
-    // insert(first,3,78);
-    // insert(first,3,56);
-    // insert(first,3,32);
-    // insert(first,3,172);
-    // insert(first,3,78);
-    // insert(first,3,56);
-    // insert(first,3,32);
-    // insert(first,3,172);
-    // insert(first,3,78);
-    // insert(first,3,56);
-    // insert(first,3,32);
-
-    display(first);
+    insert(first,3,78);
+    insert(first,3,56);
+        display(first);
+    char check;
+    cout<<endl<<"Do you want insert number? y/n: "<<endl;
+    cin>>check;
+    while(check !='n' && check !='N'){
+        cout<<"Enter index and number: "<<endl;
+        cin>>index>>number;
+        insert(first,index,number);
+        cout<<endl;
+        display(first);
+        cout<<endl;
+        cin>>check;
+    }
     return 0;
 }
