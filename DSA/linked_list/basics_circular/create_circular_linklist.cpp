@@ -17,6 +17,7 @@ class linklist{
         ~linklist();
 
         void printlist();
+        void printlistR();
         void Insert(int index,int x);
         int Delete(int index);
         int Length();
@@ -59,6 +60,7 @@ void linklist::printlist()
  }while(p!=head);
  cout<<endl;
 }
+
 
 
 int linklist::Length()
