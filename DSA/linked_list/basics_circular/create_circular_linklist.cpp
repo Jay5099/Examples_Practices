@@ -28,7 +28,7 @@ linklist::linklist(int A[],int n){
 
     head=new node();
     head->data=A[0];
-    head->next=NULL;
+    head->next=head;
     last=head;
 
     for ( i = 1; i <n; i++){
@@ -53,22 +53,24 @@ void linklist::printlist()
 {
  node *p=head;
 
- while(p){
+ do{
  cout<<p->data<<" ";
  p=p->next;
- }
+ }while(p!=head);
  cout<<endl;
 }
+
 
 int linklist::Length()
 {
  node *p=head;
  int len=0;
 
- while(p){
- len++;
+ do{
+ cout<<p->data<<" ";
  p=p->next;
- }
+ len++;
+ }while(p!=head);
  return len;
 }
 
@@ -76,17 +78,25 @@ void linklist::Insert(int index,int x){
     node*temp,*p=head;
     if(index <0 || index > Length())
         return;
-    temp=new node;
-    temp->data=x;
-    temp->next=NULL;
 
     if(index==0){
-        temp->next=head;
-        head=temp;
+        temp=new node();
+        temp->data=x;
+        if(head==NULL){
+            head=temp;
+            head->next=head;
+        }  
+        else{
+            while(p->next!=head)p=p->next;
+            p->next=temp;
+            temp->next=head;
+            head=temp;
+        }
     }
     else{
-        for(int i=0;i<index-1;i++)
-        p=p->next;
+        for(int i=0;i<index-1;i++)p=p->next;
+        temp=new node();
+        temp->data=x;
         temp->next=p->next;
         p->next=temp;
     }
@@ -99,20 +109,25 @@ int linklist::Delete(int index){
     if(index < 1 || index > Length())
         return -1;
     if(index==1){
-        p=head;
-        head=head->next;
-        x=p->data;
-        delete p;
-    }
-    else{
-        p=head;
-        for(int i=0;i<index-1;i++){
-            q=p;
-            p=p->next;
+        while(p->next!=head) p=p->next;
+        x=head->data;
+        if(head==p){
+            free(head);
+            head=NULL;
         }
-        q->next=p->next;
-        x=p->data;
-        delete p;
+        else{
+            p->next=head->next;
+            free(head);
+            head=p->next;
+        }
+        }
+    else{
+        for(int i=0;i<index-2;i++)
+            p=p->next;
+        q=p->next;
+        p->next=q->next;
+        x=q->data;
+        free(q);
     }
  return x;
 }
