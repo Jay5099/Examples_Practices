@@ -1,0 +1,19 @@
+/** @format */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  height: 34px;
+  background-color: black;
+  color: aliceblue;
+}
+.content {
+  background-color: red;
+  height: 90vh;
+}
+footer {
+  background-color: blueviolet;
+}
