@@ -82,7 +82,8 @@ int Delete(node**head,int index){
         q->next=p->next;
         if(p->next)
             r->prev=p->prev;
-        x=p->data;
+        x=p->data; 
+
         free(p);
     }
     return x;
@@ -109,14 +110,14 @@ void Reverse(node*head){
 
 int main(){
 
-    int n=3;  
-    // cout<<"Enter the size of linklist:";
-    // cin>>n;                       
+    int n{};  
+    cout<<"Enter the size of linklist:";
+    cin>>n;                       
     int A[3]{11,22,33};
-    // cout<<"Enter elements of linklist:";
-    // for(int i=0;i<n;i++){
-    //    cin>>A[i];
-    // }
+    cout<<"Enter elements of linklist:";
+    for(int i=0;i<n;i++){
+       cin>>A[i];
+    }
 
 
     node* head=NULL;
