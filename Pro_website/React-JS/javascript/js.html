@@ -1,0 +1,51 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>js</title>
+    <script>
+      "use strict";
+      //b = 8;
+      let a = 67;
+      console.log(a);
+      let obj = {
+        a: 5,
+        b: 3,
+        fun: function myfun(num) {
+          console.log("hello " + num + num + " " + num);
+        },
+      };
+
+      document.addEventListener("click", function click() {
+        console.log("clicked");
+        //alert("hello");
+        let conf = confirm("Are you sure");
+        console.log(conf);
+      });
+      let arr = [11, 23, 45];
+      // console.log(this);
+      let myobj = {
+        a: this,
+        myfunc: (num) => {
+          console.log(" hello jay this is " + this);
+        },
+      };
+      myobj.myfunc();
+      console.log(myobj.a);
+      setTimeout(() => {
+        console.log("hi yay");
+      }, 3000);
+      setTimeout(() => {
+        console.log("hi yay this is 2nd ");
+      }, 6000);
+      console.log("last one but fast");
+    </script>
+  </head>
+  <body>
+    hello there
+  </body>
+</html>
