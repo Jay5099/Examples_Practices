@@ -1,13 +1,40 @@
 /** @format */
 
-import React from 'react'
+import React,{useState} from 'react'
 import PropTypes from 'prop-types'
 
 export default function Navbar(props) {
+
+  const [myStyle, setMyStyle] = useState({
+    color:'black',
+    backgroundColor:'white'
+  })
+
+  const [btntext, setbtntext] = useState("Enable Dark Mode")
+
+  const toggleStyle=()=>{
+    if(myStyle.color==='white'){
+      setMyStyle({
+        color:'black',
+        backgroundColor:'white'
+      })
+      setbtntext("Enable Dark Mode")
+    }
+    else{
+      setMyStyle({
+        color:'white',
+      backgroundColor:'black',
+      // border:'1px solid white'
+      })
+      
+      setbtntext("Enable Light Mode")
+    }
+  }
+
   return (
     <nav className='navbar navbar-expand-lg bg-light'>
-      <div className='container-fluid'>
-        <a className='navbar-brand' href='/'>
+      <div className='container-fluid'style={myStyle}>
+        <a className='navbar-brand' href='/'style={myStyle}>
           {props.title}
         </a>
         <button
@@ -24,14 +51,17 @@ export default function Navbar(props) {
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
           <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
             <li className='nav-item'>
-              <a className='nav-link active' aria-current='page' href='/'>
+              <a className='nav-link active' aria-current='page' href='/'style={myStyle}>
                 Home
               </a>
             </li>
             <li className='nav-item'>
-              <a className='nav-link' href='/'>
+              <a className='nav-link' href='/'style={myStyle}>
                 {props.aboutText}
               </a>
+            </li>
+            <li className='nav-item'>
+              <button type="button" onClick={toggleStyle} className="btn btn-primary">{btntext}</button>
             </li>
           </ul>
           <form className='d-flex' role='search'>
